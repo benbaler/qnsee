@@ -15,10 +15,10 @@ function initData(data) {
     images = data.images;
 
 
-    for (var answerIndex = 0; i < answers.length; answerIndex++) {
-        imageIndex = answerIndex % answers.length;
+    for (var answerIndex = 0; answerIndex < answers.length; answerIndex++) {
+        imageIndex = answerIndex % images.length;
         console.log("ans : "+answerIndex+" | ima : "+imageIndex);
-        htmlContent += '<li><img src="'+image[imageIndex].url+'"><span class="answerTxt">'+answers[answerIndex].text+'</span></li>';
+        htmlContent += '<li><img src="'+images[imageIndex].url+'"><span class="answerTxt">'+answers[answerIndex].text+'</span></li>';
     }
 
     /*
