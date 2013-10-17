@@ -8,15 +8,18 @@ function initData(data) {
     var answers,
         images,
         htmlContent = '',
-        htmlNode;
+        htmlNode,
+        imageIndex;
     
     answers = data.answers;
     images = data.images;
 
-    // run over images
-    $.each(images, function(key, image) {
-      htmlContent += '<li><img src="'+image.url+'"><span class="answerTxt"></span></li>';
-    });
+
+    for (var answerIndex = 0; i < answers.length; answerIndex++) {
+        imageIndex = answerIndex % answers.length;
+        console.log("ans : "+answerIndex+" | ima : "+imageIndex);
+        htmlContent += '<li><img src="'+image[imageIndex].url+'"><span class="answerTxt">'+answers[answerIndex].text+'</span></li>';
+    }
 
     /*
     for (var i = 0; i < data.items.length; i++) {
