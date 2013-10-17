@@ -41,8 +41,8 @@ function initData(data) {
 
 function getAnswer(question) {
     //var url = "http://api.flickr.com/services/feeds/photos_public.gne?tags=cat&tagmode=any&format=json&jsoncallback=?";
-    // var url = "http://qnsee.aws.af.cm/index.php/api"
-    var url = "http://localhost/index.php/api"
+    var url = "http://qnsee.aws.af.cm/index.php/api"
+    // var url = "http://localhost/index.php/api"
     $.ajax({
       url: url,
       cache: false,
