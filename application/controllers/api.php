@@ -22,6 +22,7 @@ class Api extends CI_Controller {
 		$this->load->model('curl_m');
 		$this->load->model('dictionary_m');
 		$this->load->model('stemmer_m');
+		$this->load->helper('text');
 
 		echo '<form method="post"><input type="text" name="question" value="'.@$this->input->post("question").'" size="100"><input type="submit"></form>';
 
@@ -153,6 +154,7 @@ class Api extends CI_Controller {
 		$this->load->model('curl_m');
 		$this->load->model('dictionary_m');
 		$this->load->model('stemmer_m');
+		$this->load->helper('text');
 
 		// echo '<form method="post"><input type="text" name="question" value="'.@$this->input->get("question").'" size="100"><input type="submit"></form>';
 
@@ -187,11 +189,11 @@ class Api extends CI_Controller {
 		$answers = array();
 
 		if(isset($json['query']['results']['Question']['ChosenAnswer'])){
-			$answers[]['text'] = $json['query']['results']['Question']['ChosenAnswer'];
+			$answers[]['text'] = character_limiter($json['query']['results']['Question']['ChosenAnswer'],20);
 		} else{
 			if(isset($json['query']['results']['Question'])){
 				foreach ($json['query']['results']['Question'] as $index => $answer1) {
-					$answers[]['text'] = isset($answer1['ChosenAnswer']) ? $answer1['ChosenAnswer'] : 'Oops! No answers.';
+					$answers[]['text'] = isset($answer1['ChosenAnswer']) ? character_limiter($answer1['ChosenAnswer'],140) : 'Oops! No answers.';
 				}
 			} else{
 				$answers[]['text'] = 'Oops! No answers.';
