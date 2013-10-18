@@ -189,8 +189,12 @@ class Api extends CI_Controller {
 		if(isset($json['query']['results']['Question']['ChosenAnswer'])){
 			$answers[]['text'] = $json['query']['results']['Question']['ChosenAnswer'];
 		} else{
-			foreach ($json['query']['results']['Question'] as $index => $answer1) {
-				$answers[]['text'] = isset($answer1['ChosenAnswer']) ? $answer1['ChosenAnswer'] : 'Opss! No answers.';
+			if(isset($json['query']['results']['Question'])){
+				foreach ($json['query']['results']['Question'] as $index => $answer1) {
+					$answers[]['text'] = isset($answer1['ChosenAnswer']) ? $answer1['ChosenAnswer'] : 'Oops! No answers.';
+				}
+			} else{
+				$answers[]['text'] = 'Oops! No answers.';
 			}
 		}
 
@@ -287,28 +291,28 @@ class Api extends CI_Controller {
 		}
 
 
-			$object = array(
-				'answer' => $answer ? $answer : 'Opps! No answer was found.',
-				'image' => $img
-				);
+		$object = array(
+			'answer' => $answer ? $answer : 'Opps! No answer was found.',
+			'image' => $img
+			);
 
-			$object = array(
-				'answers' => $answers,
-				'images' => $imgs
-				);
+		$object = array(
+			'answers' => $answers,
+			'images' => $imgs
+			);
 
-			echo json_encode($object);
+		echo json_encode($object);
 		// echo $img;
 
 		// echo "</pre>";
 
 		// echo '<img src="'.$img.'"/>';
-		}
-
-		function qnsee(){
-			$this->load->view('qnsee_v');
-		}
 	}
 
-	/* End of file api.php */
+	function qnsee(){
+		$this->load->view('qnsee_v');
+	}
+}
+
+/* End of file api.php */
 /* Location: ./application/controllers/api.php */
