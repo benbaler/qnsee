@@ -15,10 +15,10 @@ function initData(data) {
     images = data.images;
 
 
-    for (var answerIndex = 0; i < answers.length; answerIndex++) {
-        imageIndex = answerIndex % answers.length;
+    for (var answerIndex = 0; answerIndex < answers.length; answerIndex++) {
+        imageIndex = answerIndex % images.length;
         console.log("ans : "+answerIndex+" | ima : "+imageIndex);
-        htmlContent += '<li><img src="'+image[imageIndex].url+'"><span class="answerTxt">'+answers[answerIndex].text+'</span></li>';
+        htmlContent += '<li><img src="'+images[imageIndex].url+'"><span class="answerTxt">'+answers[answerIndex].text+'</span></li>';
     }
 
     /*
@@ -36,16 +36,15 @@ function initData(data) {
 
     // Operate the slideshow via bjqs plugin (http://basic-slider.com/)
     $('#answerContainer').bjqs({
-        'height' : 320,
-        'width' : 620,
+        'height' : $(window).height(),
+        'width' : $(window).width(),
         'responsive' : true
     });
 }
 
 function getAnswer(question) {
-    //var url = "http://api.flickr.com/services/feeds/photos_public.gne?tags=cat&tagmode=any&format=json&jsoncallback=?";
     var url = "http://qnsee.aws.af.cm/index.php/api"
-    // var url = "http://localhost/index.php/api"
+    //var url = "test.json"
     $.ajax({
       url: url,
       cache: false,
