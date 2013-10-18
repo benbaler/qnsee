@@ -11,10 +11,11 @@
     <body>
         <div id="questionContainer">
             <label name="question">Your question: </label>
-            <input name="question" type="text" class="question" />
+            <input name="question" type="text" class="question" maxlength="140" />
             <a href="#" class="getAnswer">Answer!</a>
         </div>
         <div id="answerContainer">
+            <span class="btnHome"></span>
             <ul class="bjqs">
             </ul>
         </div>

@@ -189,11 +189,11 @@ class Api extends CI_Controller {
 		$answers = array();
 
 		if(isset($json['query']['results']['Question']['ChosenAnswer'])){
-			$answers[]['text'] = character_limiter($json['query']['results']['Question']['ChosenAnswer'],20);
+			$answers[]['text'] = character_limiter($json['query']['results']['Question']['ChosenAnswer'],500);
 		} else{
 			if(isset($json['query']['results']['Question'])){
 				foreach ($json['query']['results']['Question'] as $index => $answer1) {
-					$answers[]['text'] = isset($answer1['ChosenAnswer']) ? character_limiter($answer1['ChosenAnswer'],140) : 'Oops! No answers.';
+					$answers[]['text'] = isset($answer1['ChosenAnswer']) ? character_limiter($answer1['ChosenAnswer'],500) : 'Oops! No answers.';
 				}
 			} else{
 				$answers[]['text'] = 'Oops! No answers.';
@@ -274,7 +274,7 @@ class Api extends CI_Controller {
 
 		// var_dump($json);
 
-		$img = 'http://www.tshirtdesignsnprint.com/img/not-found.png';
+		$img = '/assets/images/fallback.png';
 
 		$imgs = array();
 
